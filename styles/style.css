@@ -1,0 +1,32 @@
+.logo-img {
+  float: left;
+}
+
+.main-form {
+  float: right;
+  padding-right: 100px;
+  padding-top: 150px;
+}
+
+.new-form {
+  float: right;
+  padding-right: 200px;
+  padding-top: 150px;
+}
+
+.activity-form {
+  float: right;
+  padding-right: 250px;
+  padding-top: 200px;
+}
+
+.miles-form {
+  float: right;
+  padding-right: 250px;
+  padding-top: 200px;
+}
+
+.btn {
+  margin-bottom: 10px;
+}
+/*# sourceMappingURL=style.css.map */
