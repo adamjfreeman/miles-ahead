@@ -27,7 +27,7 @@ Click [HERE](https://github.com/adamjfreeman/project-2-) for a link to the deplo
 Alternatively, you can run the application locally:
 
 - Download the repository code
-- Run npm install and npm run seed from the projects root directory
+- Run npm install and npm run seeds from the projects root directory
   </br></br></br>
 
 ## Technologies and Acknowledgements
@@ -67,7 +67,7 @@ Miles Traveled was built primarily utilizing HTML, CSS, and JS, as well as the f
 
 #### GitHub Profile: https://github.com/kenneththelarson
 
-#### LinkedIn:
+#### LinkedIn: https://www.linkedin.com/in/kenneth-larson-17371a99/
 
 <br>
 
