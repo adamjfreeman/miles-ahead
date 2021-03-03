@@ -12,22 +12,29 @@
 <body>
    
     <div class="logo-img">
-        <img src="Assets/pictures/logo.png" alt="" width="500" height="500" > 
+        <a href="activity.html">
+            <img src="Assets/pictures/logo.png" alt=""  > 
+        </a>
      </div>
       
      <div class="miles-form" id="milesform">
 
-        <div class="user" id="newuser">
+
     
-            <button class="btn" onclick="window.location.href='milesentry.html';">Run</button><br>
-            <button class="btn" onclick="window.location.href='milesentry.html';">Walk</button> <br>
-            <button class="btn" onclick="window.location.href='milesentry.html';">Bike</button> <br>
+
+            <h1>What was your activity today?</h1>
+    
+            <button class="btn" onclick="window.location.href='milesentry.html';">Run</button>
+            <button class="btn" onclick="window.location.href='milesentry.html';">Walk</button> 
+            <button class="btn" onclick="window.location.href='milesentry.html';">Bike</button> 
+            <br>
+            <br>
             <form action="/action_page.php">
                 <label for="miles">Miles:</label>
                 <input type="text" id="miles" name="miles"><br><br>
-                <input type="submit" value="Submit">
+                <input   class ="btn"type="submit" value="Submit">
               </form>
-        </div>
+        
 
         </div>
 
