@@ -1,34 +1,43 @@
 .logo-img {
   float: left;
+  height: 100%;
+  width: 50%;
+  margin-top: 50px;
 }
 
 .main-form {
   float: right;
-  padding-right: 100px;
-  padding-top: 150px;
+  height: 100%;
+  width: 50%;
+  margin-top: 50px;
 }
 
 .new-form {
   float: right;
-  padding-right: 250px;
-  padding-top: 150px;
+  height: 100%;
+  width: 50%;
+  margin-top: 50px;
 }
 
 .activity-form {
   float: right;
-  padding-right: 250px;
-  padding-top: 200px;
+  height: 100%;
+  width: 50%;
+  margin-top: 50px;
 }
 
 .miles-form {
   float: right;
-  padding-right: 200px;
-  padding-top: 100px;
+  height: 100%;
+  width: 50%;
+  margin-top: 50px;
 }
 
 .goal-page {
   float: right;
-  padding-right: 100px;
+  height: 100%;
+  width: 50%;
+  margin-top: 50px;
 }
 
 .btn {
@@ -49,9 +58,15 @@
 }
 
 /* On screens that are 992px wide or less, go from four columns to two columns */
-@media (max-width: 1145px) {
-  .logo-img .main-form {
+@media (max-width: 900px) {
+  .logo-img {
     float: left;
+    height: 100%;
+    width: 100%;
+  }
+  .main-form, .new-form, .activity-form, .miles-form {
+    float: right;
+    height: 100%;
     width: 100%;
   }
 }
