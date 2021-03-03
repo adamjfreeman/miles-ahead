@@ -1,3 +1,6 @@
+$font-stack:    Tahoma, Verdana, Segoe, sans-serif;
+
+
 .logo-img {
     float: left;
 }
@@ -11,7 +14,7 @@
 
 .new-form {
     float: right;
-    padding-right: 200px;
+    padding-right: 250px;
     padding-top: 150px;
     
 }
@@ -25,11 +28,40 @@
 
 .miles-form {
     float: right;
-    padding-right: 250px;
-    padding-top: 200px;
+    padding-right: 200px;
+    padding-top: 100px;
 
 }
+
+.goal-page {
+    float: right;
+    padding-right: 100px;
+    
+
+}
+
 
 .btn {
     margin-bottom: 10px;
+    margin-top: 10px;
+    background-color: rgb(43, 159, 226);
+    border-radius: 8px;
+    width: 100px;
 }
+
+.btn1 {
+    margin-bottom: 50px;
+    margin-top: 50px;
+    background-color: rgb(43, 159, 226);
+    border-radius: 8px;
+    width: 200px;
+    height: 50px; 
+}
+
+/* On screens that are 992px wide or less, go from four columns to two columns */
+@media(max-width: 1145px) {
+    .left, .right {
+        float: none;
+        width: 100%;
+    }
+  }
