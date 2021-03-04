@@ -33,5 +33,9 @@ router.get('/progress', (req, res) => {
     res.render('progress');
 });
 
+router.get('/newuser', (req, res) => {
+       res.render('newuser');
+});
+
 
 module.exports = router;
