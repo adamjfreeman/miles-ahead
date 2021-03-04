@@ -1,6 +1,7 @@
 const router = require('express').Router();
 const sequelize = require('../config/connection');
 const { User, Goals, Progress } = require('../models');
+const withAuth = require('../utils/auth');
 
 router.get('/', (req, res) => {
     res.render('homepage');
@@ -15,12 +16,16 @@ router.get('/login', (req, res) => {
     res.render('login');
 });
 
-router.get('/goals', (req, res) => {
+router.get('/goals', withAuth, (req, res) => {
+    if (req.session.loggedIn) {
+        res.redirect('/');
+        return;
+    }
 
     res.render('goals');
 });
 
-router.get('/activity', (req, res) => {
+router.get('/activity', withAuth, (req, res) => {
 
     res.render('activity');
 });
