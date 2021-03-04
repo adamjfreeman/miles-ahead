@@ -22,7 +22,7 @@ An interactive web app where the user can track miles traveled daily, weekly, mo
 
 ## Usage and Installation
 
-Click [HERE](https://github.com/adamjfreeman/project-2-) for a link to the deployed application.
+Click [HERE](https://miles-ahead.herokuapp.com/) for a link to the deployed application.
 
 Alternatively, you can run the application locally:
 
