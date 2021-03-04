@@ -48,6 +48,14 @@ $font-stack:    Tahoma, Verdana, Segoe, sans-serif;
 
 }
 
+.progress-form {
+    float: right;
+    height: 100%;
+    width: 50%;
+    margin-top: 50px;
+
+}
+
 
 .btn {
     margin-bottom: 10px;
@@ -74,7 +82,7 @@ $font-stack:    Tahoma, Verdana, Segoe, sans-serif;
         width: 100%;
     }
 
-    .main-form, .new-form, .activity-form, .miles-form {
+    .main-form, .new-form, .activity-form, .miles-form, .progress-form {
         float: right;
         height: 100%;
         width: 100%;
