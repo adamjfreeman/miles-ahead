@@ -1,6 +1,7 @@
 // Dependencies
 const router = require('express').Router();
 const { Goals, User } = require('../../models');
+const withAuth = require('../../utils/auth');
 
 
 // Get All Goals
@@ -41,7 +42,7 @@ router.get('/:id', (req, res) => {
 
 
 // Create New Goal -- Primary key auto? Pass all goals?
-router.post('/', (req, res) => {
+router.post('/', withAuth, (req, res) => {
     Goals.create({
       run: req.body.run,
       walk: req.body.walk,
@@ -57,7 +58,7 @@ router.post('/', (req, res) => {
 
 
 // Edit Existing Goal
-router.put('/:id', (req, res) => {
+router.put('/:id', withAuth, (req, res) => {
     Goals.update(req.body, {
       individualHooks: true,
       where: {
@@ -79,7 +80,7 @@ router.put('/:id', (req, res) => {
 
 
 // Delete Existing Goal
-router.delete('/:id', (req, res) => {
+router.delete('/:id', withAuth, (req, res) => {
     Goals.destroy({
       where: {
         id: req.params.id
