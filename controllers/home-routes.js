@@ -13,7 +13,7 @@ router.get('/login', (req, res) => {
         return;
     }
 
-    res.render('login');
+    res.render('/');
 });
 
 router.get('/goals', withAuth, (req, res) => {
@@ -48,7 +48,7 @@ router.get('/goals/:id', withAuth, (req, res) => {
 });
 
 router.get('/activity', withAuth, (req, res) => {
-    Goals.findOne({
+    Goals.findOne(req.params.id, {
         atrributes: ['id', 'run', 'walk', 'bike', 'user_id'],
         include: [
             {
@@ -57,17 +57,17 @@ router.get('/activity', withAuth, (req, res) => {
             }
         ]
     })
-    .then(dbGoalsData => {
-        const goals = dbGoalsData.get({ plain: true });
-        res.render('activity', goals);
-    })
-    .catch(err => {
-        console.log(err);
-        res.status(500).json(err);
-    });
-    
+        .then(dbGoalsData => {
+            const goals = dbGoalsData.get({ plain: true });
+            res.render('activity', {goals, loggedIn: true});
+        })
+        .catch(err => {
+            console.log(err);
+            res.status(500).json(err);
+        });
 
-});    
+
+});
 
 router.get('/milesentry', (req, res) => {
 
