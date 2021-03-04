@@ -17,27 +17,65 @@ router.get('/login', (req, res) => {
 });
 
 router.get('/goals', withAuth, (req, res) => {
-
     res.render('goals');
 });
 
-router.get('/activity', withAuth, (req, res) => {
+router.get('/goals/:id', withAuth, (req, res) => {
+    Goals.findByPk(req.params.id, {
+        atrributes: ['id', 'run', 'walk', 'bike', 'user_id'],
+        include: [
+            {
+                model: User,
+                attributes: ['username']
+            }
+        ]
+    })
+        .then(dbGoalsData => {
+            if (dbGoalsData) {
+                const goals = dbGoalsData.get({ plain: true });
 
-    res.render('activity');
+                res.render('activity', {
+                    goals,
+                    loggedIn: true
+                });
+            } else {
+                res.status(404).end();
+            }
+        })
+        .catch(err => {
+            res.status(500).json(err);
+        });
 });
+
+router.get('/activity', withAuth, (req, res) => {
+    Goals.findOne({
+        atrributes: ['id', 'run', 'walk', 'bike', 'user_id'],
+        include: [
+            {
+                model: User,
+                attributes: ['username']
+            }
+        ]
+    })
+    .then(dbGoalsData => {
+        const goals = dbGoalsData.get({ plain: true });
+        res.render('activity', goals);
+    })
+    .catch(err => {
+        console.log(err);
+        res.status(500).json(err);
+    });
+    
+
+});    
 
 router.get('/milesentry', (req, res) => {
 
     res.render('milesentry');
 });
 
-router.get('/progress', (req, res) => {
-
-    res.render('progress');
-});
-
 router.get('/newuser', (req, res) => {
-       res.render('newuser');
+    res.render('newuser');
 });
 
 
