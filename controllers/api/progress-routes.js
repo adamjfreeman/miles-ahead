@@ -1,6 +1,7 @@
 // Dependencies
 const router = require('express').Router();
 const { Progress, User } = require('../../models');
+const withAuth = require('../../utils/auth');
 
 
 // Get All Progress
@@ -41,7 +42,7 @@ router.get('/:id', (req, res) => {
 
 
 // Create New Progess -- Primary key auto? Pass all Progress?
-router.post('/', (req, res) => {
+router.post('/', withAuth, (req, res) => {
     Progress.create({
         runProgress: req.body.runProgress,
         walkProgress: req.body.walkProgress,
@@ -57,7 +58,7 @@ router.post('/', (req, res) => {
 
 
 // Edit Existing Progress
-router.put('/:id', (req, res) => {
+router.put('/:id', withAuth, (req, res) => {
     Progress.update(req.body, {
         individualHooks: true,
         where: {
@@ -79,7 +80,7 @@ router.put('/:id', (req, res) => {
 
 
 // Delete Existing Progress
-router.delete('/:id', (req, res) => {
+router.delete('/:id', withAuth, (req, res) => {
     Progress.destroy({
         where: {
             id: req.params.id
