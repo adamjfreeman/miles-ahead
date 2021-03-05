@@ -1,29 +1,44 @@
+.hero-image {
+  background-image: url("https://images.unsplash.com/photo-1486673748761-a8d18475c757?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=750&q=80");
+  background-color: #cccccc;
+  height: 500px;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  position: relative;
+}
+
 .logo-img {
   float: left;
-  height: 100%;
-  width: 50%;
+  height: auto;
+  width: auto;
   margin-top: 50px;
+  margin-left: 10px;
+  opacity: 75%;
 }
 
 .main-form {
   float: right;
   height: 100%;
-  width: 50%;
+  width: auto;
   margin-top: 50px;
+  margin-right: 10px;
 }
 
 .new-form {
   float: right;
   height: 100%;
-  width: 50%;
+  width: auto;
   margin-top: 50px;
+  margin-right: 10px;
 }
 
 .activity-form {
   float: right;
   height: 100%;
-  width: 50%;
+  width: auto;
   margin-top: 50px;
+  margin-right: 200px;
 }
 
 .miles-form {
@@ -31,20 +46,23 @@
   height: 100%;
   width: 50%;
   margin-top: 50px;
+  margin-right: 10px;
 }
 
 .goal-page {
   float: right;
   height: 100%;
-  width: 50%;
+  width: auto;
   margin-top: 50px;
+  margin-right: 10px;
 }
 
 .progress-form {
   float: right;
   height: 100%;
-  width: 50%;
+  width: auto;
   margin-top: 50px;
+  margin-right: 10px;
 }
 
 .btn {
@@ -53,6 +71,7 @@
   background-color: #2b9fe2;
   border-radius: 8px;
   width: 100px;
+  opacity: 80%;
 }
 
 .btn1 {
@@ -62,12 +81,13 @@
   border-radius: 8px;
   width: 200px;
   height: 50px;
+  opacity: 90%;
 }
 
 /* On screens that are 992px wide or less, go from four columns to two columns */
 @media (max-width: 900px) {
   .logo-img {
-    float: left;
+    float: center;
     height: 100%;
     width: 100%;
   }
