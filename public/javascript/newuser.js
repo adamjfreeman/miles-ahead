@@ -12,7 +12,7 @@ async function signupFormHandler(event) {
                 password
             }),
             headers: { 'Content-Type': 'application/json' }
-        });
+        })
 
         if (response.ok) {
             document.location.replace('/activity/');
@@ -22,4 +22,4 @@ async function signupFormHandler(event) {
     }
 }
 
-document.querySelector('.btn').addEventListener('submit', signupFormHandler);
+document.querySelector('#signup-form').addEventListener('submit', signupFormHandler);
