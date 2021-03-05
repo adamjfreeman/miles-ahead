@@ -19,15 +19,17 @@
         <a class="link" href="/login">Login</a>
         {{/if}}
     </nav>
+    <div class="hero-image">
+    
+        <div class="logo-img">
+            <img src="/Assets/pictures/logo.png" alt="">
+        </div>
+                
+        {{{ body }}}
 
-    <div class="logo-img">
-        <img src="/Assets/pictures/logo.png" alt="" width="500" height="500">
+        {{#if loggedIn}}
+        <script src="/javascript/logout.js"></script>
+        {{/if}}
     </div>
-            
-    {{{ body }}}
-
-    {{#if loggedIn}}
-    <script src="/javascript/logout.js"></script>
-    {{/if}}
     
 </body>
