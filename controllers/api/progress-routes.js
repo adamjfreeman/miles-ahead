@@ -22,7 +22,8 @@ router.get('/:id', (req, res) => {
     Progress.findOne({
         where: {
             id: req.params.id
-        }
+        },
+        attributes: ['id', 'runProgress', 'walkProgress', 'bikeProgress', 'user_id']
     })
         .then(dbProgressData => {
             if (!dbProgressData) {
