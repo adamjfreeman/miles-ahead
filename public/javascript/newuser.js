@@ -9,18 +9,17 @@ async function signupFormHandler(event) {
             method: 'post',
             body: JSON.stringify({
                 username,
-                email,
                 password
             }),
             headers: { 'Content-Type': 'application/json' }
-        });
+        })
 
         if (response.ok) {
-            document.location.replace('/dashboard');
+            document.location.replace('/activity/');
         } else {
             alert(response.statusText);
         }
     }
 }
 
-document.querySelector('.user').addEventListener('submit', signupFormHandler);
+document.querySelector('#signup-form').addEventListener('submit', signupFormHandler);
