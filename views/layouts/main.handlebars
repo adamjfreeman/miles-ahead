@@ -12,9 +12,12 @@
 </head>
 
 <body>
-    <nav>
-        <button id="logout" class="btn-no-style">logout</button>
-        <a href="/">login</a>
+    <nav class"nav">
+        {{#if loggedIn}}
+        <a class="link" href="/" id="logout">Logout</a>
+        {{else}}
+        <a class="link" href="/login">Login</a>
+        {{/if}}
     </nav>
 
     <div class="logo-img">
@@ -23,6 +26,8 @@
             
     {{{ body }}}
 
+    {{#if loggedIn}}
     <script src="/javascript/logout.js"></script>
+    {{/if}}
     
 </body>
