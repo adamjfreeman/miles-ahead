@@ -40,6 +40,7 @@ router.get('/goals/:id', withAuth, (req, res) => {
 });
 
 router.get('/activity', withAuth, (req, res) => {
+    
     Goals.findOne(req.params.id, {
         atrributes: ['id', 'run', 'walk', 'bike', 'user_id'],
         include: [
