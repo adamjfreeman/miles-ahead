@@ -7,17 +7,9 @@ router.get('/', (req, res) => {
     res.render('homepage');
 });
 
-router.get('/login', (req, res) => {
-    if (req.session.loggedIn) {
-        res.redirect('/');
-        return;
-    }
-
-    res.render('/');
-});
 
 router.get('/goals', withAuth, (req, res) => {
-    res.render('goals');
+    res.render('goals', { loggedIn: true});
 });
 
 router.get('/goals/:id', withAuth, (req, res) => {
@@ -58,20 +50,37 @@ router.get('/activity', withAuth, (req, res) => {
         ]
     })
         .then(dbGoalsData => {
+            console.log(dbGoalsData);
             const goals = dbGoalsData.get({ plain: true });
-            res.render('activity', {goals, loggedIn: true});
+            Progress.findOne(req.params.id, {
+                atrributes: ['id', 'runProgress', 'walkProgress', 'bikeProgress', 'user_id'],
+                include: [
+                    {
+                        model: User,
+                        attributes: ['username']
+                    }
+                ]
+            })
+                .then(dbProgressData => {
+                    console.log(dbProgressData);
+                    const progress = dbProgressData.get({ plain: true });
+                    res.render('activity', { progress, goals, loggedIn: true });
+                })
+                .catch(err => {
+                    console.log(err);
+                    res.status(500).json(err);
+                });
+            
         })
         .catch(err => {
             console.log(err);
             res.status(500).json(err);
         });
-
-
 });
 
 router.get('/milesentry', (req, res) => {
 
-    res.render('milesentry');
+    res.render('milesentry', { loggedIn: true });
 });
 
 router.get('/newuser', (req, res) => {
