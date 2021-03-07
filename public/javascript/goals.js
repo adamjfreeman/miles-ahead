@@ -1,10 +1,13 @@
+console.log("banana");
 async function goalsHandler(event) {
     event.preventDefault();
+    console.log("look you got here");
 
-    const run = document.querySelector('#run').value.trim();
-    const walk = document.querySelector('#walk').value.trim();
-    const bike = document.querySelector('#bike').value.trim();
-    const id = req.session.user_id;
+    const run = document.querySelector('input[name="run"]').value.trim();
+    const walk = document.querySelector('input[name="walk"]').value.trim();
+    const bike = document.querySelector('input[name="bike"]').value.trim();
+    const id = document.querySelector('input[name="userid"]').value.trim();
+    console.log(id);
     if (run || walk || bike) {
         const response = await fetch(`/api/goals/${id}`, {
             method: 'PUT',
@@ -25,4 +28,4 @@ async function goalsHandler(event) {
 }
 
 
-document.querySelector('#goals-form').addEventListener('submit', goalsHandler);
+document.querySelector('.goals-form').addEventListener('submit', goalsHandler);
