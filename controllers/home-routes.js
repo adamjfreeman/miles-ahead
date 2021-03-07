@@ -3,12 +3,13 @@ const sequelize = require('../config/connection');
 const { User, Goals, Progress } = require('../models');
 const withAuth = require('../utils/auth');
 
-router.get('/', (req, res) => {
+router.get('/', withAuth, (req, res) => {
     console.log(req.session);
+    console.log (req.params.id);
     if (req.session.loggedIn) {
-        Goals.findOne(req.params.id, {
+        Goals.findOne( {
             where: {
-                id: req.session.user_id
+                user_id: req.session.user_id
             },
             atrributes: ['id', 'run', 'walk', 'bike', 'user_id'],
             include: [
@@ -21,9 +22,9 @@ router.get('/', (req, res) => {
             .then(dbGoalsData => {
                 console.log(dbGoalsData);
                 const goals = dbGoalsData.get({ plain: true });
-                Progress.findOne(req.params.id, {
+                Progress.findOne( {
                     where: {
-                        id: req.session.user_id
+                        user_id: req.session.user_id
                     },
                     atrributes: ['id', 'runProgress', 'walkProgress', 'bikeProgress', 'user_id'],
                     include: [
