@@ -1,33 +1,31 @@
+let progressType = '';
+
 async function milesHandler(event) {
     event.preventDefault();
-    const progressType = '';
-
-    if(document.querySelector('#runbtn').clicked == true){
-        progressType = 'runProgress';
-        alert("button was clicked");
-    }
-    if (document.querySelector('#walkbtn').clicked == true) {
-        progressType = 'walkProgress';
-        alert("button was clicked");
-    }
-    if (document.querySelector('#bikebtn').clicked == true) {
-        progressType = 'bikeProgress';
-        alert("button was clicked");
-    }
-
-    
     const milesAmount = document.querySelector('input[name="miles"]').value.trim();
     console.log(progressType);
     console.log(milesAmount);
     const id = document.querySelector('input[name="userid"]').value.trim();
-    if (progressType && milesAmount) {
+    if (progressType) {
+
+        let progressObject = {
+            user_id: id,
+        }
+        if (progressType === "runProgress") {
+            progressObject.runProgress = milesAmount;
+        }
+        else if (progressType === "walkProgress") {
+            progressObject.walkProgress = milesAmount;
+        }
+        else if (progressType === "bikeProgress") {
+            progressObject.bikeProgress = milesAmount;
+        }
+        console.log (progressObject);
         const response = await fetch(`/api/progress/${id}`, {
+            
             method: 'PUT',
             body: JSON.stringify({
-                user_id: id,
-                runProgress,
-                walkProgress,
-                bikeProgress
+                progressObject 
             }),
             headers: { 'Content-Type': 'application/json' }
         });
@@ -40,4 +38,13 @@ async function milesHandler(event) {
 }
 
 
+document.querySelector('#runbtn').addEventListener('click', function (event) {
+    progressType = "runProgress"
+});
+document.querySelector('#walkbtn').addEventListener('click', function (event) {
+    progressType = "walkProgress"
+});
+document.querySelector('#bikebtn').addEventListener('click', function (event) {
+    progressType = "bikeProgress"
+});
 document.querySelector('.miles-form').addEventListener('submit', milesHandler);
