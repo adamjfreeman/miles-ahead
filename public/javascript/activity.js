@@ -1,6 +1,12 @@
-//const { Progress, Goals, User } = require('../../models');
+async function progressPageEventHandler(event) {
+    event.preventDefault();
+    document.location.replace('/milesentry/');
+}
 
-const progress = document.querySelector('.progress-bar');
+async function goalsPageEventHandler(event) {
+    event.preventDefault();
+    document.location.replace('/goals/');
+}
 
-progress.style.width = progress.getAttribute('data-done') + '%';
-progress.style.opacity = 1;
+document.querySelector('#progressenter').addEventListener('click', progressPageEventHandler);
+document.querySelector('#goalsenter').addEventListener('click', goalsPageEventHandler);

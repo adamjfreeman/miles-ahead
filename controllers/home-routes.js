@@ -3,8 +3,57 @@ const sequelize = require('../config/connection');
 const { User, Goals, Progress } = require('../models');
 const withAuth = require('../utils/auth');
 
-router.get('/', (req, res) => {
-    res.render('homepage');
+router.get('/', withAuth, (req, res) => {
+    console.log(req.session);
+    console.log (req.params.id);
+    if (req.session.loggedIn) {
+        Goals.findOne({
+            where: {
+                user_id: req.session.user_id
+            },
+            atrributes: ['id', 'run', 'walk', 'bike', 'user_id'],
+            include: [
+                {
+                    model: User,
+                    attributes: ['username']
+                }
+            ]
+        })
+            .then(dbGoalsData => {
+                console.log(dbGoalsData);
+                const goals = dbGoalsData.get({ plain: true });
+                Progress.findOne({
+                    where: {
+                        user_id: req.session.user_id
+                    },
+                    atrributes: ['id', 'runProgress', 'walkProgress', 'bikeProgress', 'user_id'],
+                    include: [
+                        {
+                            model: User,
+                            attributes: ['username']
+                        }
+                    ]
+                })
+                    .then(dbProgressData => {
+                        console.log(dbProgressData);
+                        const progress = dbProgressData.get({ plain: true });
+                        res.render('activity', { progress, goals, loggedIn: true });
+                    })
+                    .catch(err => {
+                        console.log(err);
+                        res.status(500).json(err);
+                    });
+
+            })
+            .catch(err => {
+                console.log(err);
+                res.status(500).json(err);
+            });
+    }
+    else {
+        res.render('login');
+    }
+    
 });
 
 router.get('/login', (req, res) => {
@@ -13,11 +62,12 @@ router.get('/login', (req, res) => {
         return;
     }
 
-    res.render('/');
+    res.render('login');
 });
 
+
 router.get('/goals', withAuth, (req, res) => {
-    res.render('goals');
+    res.render('goals', { loggedIn: true});
 });
 
 router.get('/goals/:id', withAuth, (req, res) => {
@@ -47,8 +97,12 @@ router.get('/goals/:id', withAuth, (req, res) => {
         });
 });
 
-router.get('/activity', withAuth, (req, res) => {
+router.get('/activity/:id', withAuth, (req, res) => {
+    console.log(req.params);
     Goals.findOne(req.params.id, {
+        where: {
+            id: req.params.id
+        },
         atrributes: ['id', 'run', 'walk', 'bike', 'user_id'],
         include: [
             {
@@ -58,20 +112,44 @@ router.get('/activity', withAuth, (req, res) => {
         ]
     })
         .then(dbGoalsData => {
+            console.log(dbGoalsData);
             const goals = dbGoalsData.get({ plain: true });
-            res.render('activity', {goals, loggedIn: true});
+            Progress.findOne(req.params.id, {
+                where: {
+                    id: req.params.id
+                },
+                atrributes: ['id', 'runProgress', 'walkProgress', 'bikeProgress', 'user_id'],
+                include: [
+                    {
+                        model: User,
+                        attributes: ['username']
+                    }
+                ]
+            })
+                .then(dbProgressData => {
+                    console.log(dbProgressData);
+                    const progress = dbProgressData.get({ plain: true });
+                    res.render('activity', { progress, goals, loggedIn: true });
+                })
+                .catch(err => {
+                    console.log(err);
+                    res.status(500).json(err);
+                });
+            
         })
         .catch(err => {
             console.log(err);
             res.status(500).json(err);
         });
-
-
 });
 
 router.get('/milesentry', (req, res) => {
-
-    res.render('milesentry');
+    if (req.session.loggedIn) {
+        res.render('milesentry', { loggedIn: true });
+    }
+    else {
+        res.render('login')
+    }
 });
 
 router.get('/newuser', (req, res) => {
