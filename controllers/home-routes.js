@@ -7,7 +7,7 @@ router.get('/', withAuth, (req, res) => {
     console.log(req.session);
     console.log (req.params.id);
     if (req.session.loggedIn) {
-        Goals.findOne( {
+        Goals.findOne({
             where: {
                 user_id: req.session.user_id
             },
@@ -22,7 +22,7 @@ router.get('/', withAuth, (req, res) => {
             .then(dbGoalsData => {
                 console.log(dbGoalsData);
                 const goals = dbGoalsData.get({ plain: true });
-                Progress.findOne( {
+                Progress.findOne({
                     where: {
                         user_id: req.session.user_id
                     },

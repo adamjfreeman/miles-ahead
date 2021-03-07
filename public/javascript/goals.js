@@ -4,9 +4,7 @@ async function goalsHandler(event) {
     const run = document.querySelector('#run').value.trim();
     const walk = document.querySelector('#walk').value.trim();
     const bike = document.querySelector('#bike').value.trim();
-    const id = window.location.toString().split('/')[
-        window.location.toString().split('/').length - 1
-    ];
+    const id = req.session.user_id;
     if (run || walk || bike) {
         const response = await fetch(`/api/goals/${id}`, {
             method: 'PUT',
@@ -19,7 +17,7 @@ async function goalsHandler(event) {
             headers: { 'Content-Type': 'application/json' }
         });
         if (response.ok) {
-            document.location.replace('/activity/');
+            document.location.replace('/');
         } else {
             alert(response.statusText);
         }
@@ -27,4 +25,4 @@ async function goalsHandler(event) {
 }
 
 
-document.querySelector('#goals').addEventListener('submit', goalsHandler);
+document.querySelector('#goals-form').addEventListener('submit', goalsHandler);
