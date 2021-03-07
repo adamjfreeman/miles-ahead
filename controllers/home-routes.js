@@ -69,13 +69,9 @@ router.get('/goals', withAuth, (req, res) => {
 });
 
 
-router.get('/milesentry', (req, res) => {
-    if (req.session.loggedIn) {
-        res.render('milesentry', { loggedIn: true });
-    }
-    else {
-        res.render('login')
-    }
+router.get('/milesentry', withAuth, (req, res) => {
+    userid = req.session.user_id;
+    res.render('milesentry', { loggedIn: true, userid: userid });
 });
 
 router.get('/newuser', (req, res) => {

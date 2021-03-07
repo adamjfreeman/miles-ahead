@@ -1,10 +1,26 @@
 async function milesHandler(event) {
     event.preventDefault();
-    const runProgress = document.querySelector('input[name="run"]').value.trim();
-    const walkProgress = document.querySelector('input[name="walk"]').value.trim();
-    const bikeProgress = document.querySelector('input[name="bike"]').value.trim();
+    const progressType = '';
+
+    if(document.querySelector('#runbtn').clicked == true){
+        progressType = 'runProgress';
+        alert("button was clicked");
+    }
+    if (document.querySelector('#walkbtn').clicked == true) {
+        progressType = 'walkProgress';
+        alert("button was clicked");
+    }
+    if (document.querySelector('#bikebtn').clicked == true) {
+        progressType = 'bikeProgress';
+        alert("button was clicked");
+    }
+
+    
+    const milesAmount = document.querySelector('input[name="miles"]').value.trim();
+    console.log(progressType);
+    console.log(milesAmount);
     const id = document.querySelector('input[name="userid"]').value.trim();
-    if (run || walk || bike) {
+    if (progressType && milesAmount) {
         const response = await fetch(`/api/progress/${id}`, {
             method: 'PUT',
             body: JSON.stringify({
@@ -24,4 +40,4 @@ async function milesHandler(event) {
 }
 
 
-document.querySelector('.goals-form').addEventListener('submit', milesHandler);
+document.querySelector('.miles-form').addEventListener('submit', milesHandler);

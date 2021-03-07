@@ -2,13 +2,14 @@
 
     <h1>What was your activity today?</h1>
 
-    <button class="btn">Run</button>
-    <button class="btn">Walk</button>
-    <button class="btn">Bike</button>
+    <button class="btn" id="runbtn">Run</button>
+    <button class="btn" id="walkbtn">Walk</button>
+    <button class="btn" id="bikebtn">Bike</button>
     <br>
     <br>
     <form>
         <label for="miles">Miles:</label>
+        <input type="number" class="hide" id="id" name="userid" value="{{userid}}"></input>
         <input type="text" id="miles" name="miles"><br><br>
         <input class="btn" type="submit" value="Submit">
     </form>
