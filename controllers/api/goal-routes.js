@@ -38,9 +38,6 @@ router.get('/:id', (req, res) => {
   });
 
 
-// -----------------------------          Route to grab all goals for specific user (.where userid)?
-
-
 // Create New Goal -- Primary key auto? Pass all goals?
 router.post('/', withAuth, (req, res) => {
     Goals.create({

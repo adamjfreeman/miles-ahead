@@ -60,18 +60,21 @@ router.post('/', withAuth, (req, res) => {
 
 // Edit Existing Progress
 router.put('/:id', withAuth, (req, res) => {
-    Progress.update(req.body, {
+    console.log('++++++++++++++++++++++++++++++++++++++');
+    console.log(req.body.progressObject);
+    Progress.update(req.body.progressObject, {
         individualHooks: true,
         where: {
             id: req.params.id
         }
     })
         .then(dbProgressData => {
-            if (!dbProgressData[0]) {
+            console.log(dbProgressData[1]);
+            if (!dbProgressData[1]) {
                 res.status(404).json({ message: 'No progress found with this ID!' });
                 return;
             }
-            res.json(dbProgressData);
+            res.json(dbProgressData[1]);
         })
         .catch(err => {
             console.log(err);

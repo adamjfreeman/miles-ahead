@@ -44,16 +44,33 @@ router.get('/:id', (req, res) => {
         });
 });
 
+
 router.post('/', (req, res) => {
     User.create({
         username: req.body.username,
-        password: req.body.password
-    })
-        .then(dbUserData => {
+        password: req.body.password,
+
+    }) .then(dbUserData => {
             req.session.save(() => {
                 req.session.user_id = dbUserData.id;
                 req.session.username = dbUserData.username;
                 req.session.loggedIn = true;
+
+                Goals.create({
+                    run: 0,
+                    walk: 0,
+                    bike: 0,
+                    user_id: dbUserData.id
+
+                })
+
+                Progress.create({
+                    runProgress: 0,
+                    walkProgress: 0,
+                    bikeProgress: 0,
+                    user_id: dbUserData.id
+
+                })
 
                 res.json(dbUserData);
             });
@@ -92,7 +109,7 @@ router.post('/login', (req, res) => {
     });
 });
 
-router.post('/logout', withAuth, (req, res) => {
+router.post('/logout', (req, res) => {
     if (req.session.loggedIn) {
         req.session.destroy(() => {
             res.status(204).end();

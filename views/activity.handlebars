@@ -1,34 +1,29 @@
 <div class="progress-form" id="progress">
 
-
-
     <h1>Here is your progress!</h1>
     
     <div class="miles">
         <h2>Miles So Far</h2>
-        <li>Run Progress: {{runProgress}}</li>
-        <li>Walk Progress: {{walkProgress}}</li>
-        <li>Bike Progress: {{bikeProgress}}</li>
+        <li>Run Progress: {{progress.runProgress}}</li>
+        <li>Walk Progress: {{progress.walkProgress}}</li>
+        <li>Bike Progress: {{progress.bikeProgress}}</li>
     </div>
     
     <div class="goals">
-        <h2>Weekly Goal</h2>
-        <li>Run Progress: {{run}}</li>
-        <li>Walk Progress: {{walk}}</li>
-        <li>Bike Progress: {{bike}}</li>
+        <h2>Weekly Goals</h2>
+        <li>Run Goal: {{goals.run}}</li>
+        <li>Walk Goal: {{goals.walk}}</li>
+        <li>Bike Goal: {{goals.bike}}</li>
     </div>
 
-
-
 </div>
-
 
 <div class="activity-form" id="activityform">
 
     <div class="user" id="newuser">
 
-        <button class="btn1" onclick="document.location.replace('/milesentry/');">Enter Activity</button><br>
-        <button class="btn1" onclick="document.location.replace('/goals/');">Enter Goals</button>
+        <button class="btn1" id='progressenter'>Enter Activity</button><br>
+        <button class="btn1" id='goalsenter'>Enter Goals</button>
 
     </div>
 
