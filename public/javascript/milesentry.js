@@ -23,7 +23,7 @@ async function milesHandler(event) {
         console.log (progressObject);
         const response = await fetch(`/api/progress/${id}`, {
             
-            method: 'POST',
+            method: 'PUT',
             body: JSON.stringify({
                 progressObject 
             }),

@@ -47,7 +47,21 @@ router.get('/:id', (req, res) => {
 router.post('/', (req, res) => {
     User.create({
         username: req.body.username,
-        password: req.body.password
+        password: req.body.password,
+        goals: [
+            {
+                run: 0,
+                walk: 0,
+                bike: 0
+            }
+        ],
+        progresses: [
+            {
+                runProgress: 0,
+                walkProgress: 0,
+                bikeProgress: 0
+            }
+        ]
     })
         .then(dbUserData => {
             req.session.save(() => {
