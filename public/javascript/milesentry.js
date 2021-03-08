@@ -23,11 +23,14 @@ async function milesHandler(event) {
         console.log (progressObject);
         const response = await fetch(`/api/progress/${id}`, {
             
-            method: 'PUT',
+            method: 'POST',
             body: JSON.stringify({
                 progressObject 
             }),
-            headers: { 'Content-Type': 'application/json' }
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            },
         });
         if (response.ok) {
             document.location.replace('/');

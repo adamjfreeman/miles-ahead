@@ -59,7 +59,8 @@ router.post('/', withAuth, (req, res) => {
 
 
 // Edit Existing Progress
-router.put('/:id', withAuth, (req, res) => {
+router.post('/:id', withAuth, (req, res) => {
+    console.log("route hit");
     Progress.update(req.body, {
         individualHooks: true,
         where: {
