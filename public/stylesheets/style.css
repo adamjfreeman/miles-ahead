@@ -84,6 +84,10 @@
   padding-right: 10px;
 }
 
+.hide {
+  display: none;
+}
+
 .btn {
   margin-bottom: 10px;
   margin-top: 10px;
